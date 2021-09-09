@@ -2,3 +2,51 @@
   text-align: center;
 }
 
+#result {
+  display:block;
+  font-family: sans-serif;
+  height:40px;
+  margin:10px auto;
+  text-align: right;
+  border:0;
+  background:grey;
+  color:#fff;
+  padding-top:10px;
+  font-size:20px;
+  outline: none;
+  overflow: hidden;
+  letter-spacing: 4px;
+  position: relative;
+  top:10px;
+}
+
+#result:hover {
+  cursor: text;
+}
+
+.buttons {
+  display: flex;
+  padding: 5px 11px;
+}
+
+.btn {
+  background-color: grey;
+  color: white;
+  width: 25%;
+  border-radius: 0;
+  border: 1px solid rgb(197, 195, 195);
+}
+
+.btn:hover {
+  background-color: rgb(100, 100, 100);
+  color: white;
+}
+
+.btn:active {
+  outline: none;
+}
+
+.btn-check:focus + .btn, .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0;
+}
