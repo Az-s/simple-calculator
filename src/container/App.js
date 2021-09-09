@@ -1,11 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
   const calculate = useSelector(state => state.calculate);
+  
+  const insertValue = (e) => dispatch({type: 'GET_VALUE', value: e.currentTarget.id});
+  const calculateAll = () => dispatch({type: 'CALCULATE'});
+  const deleteLast = () => dispatch({type: 'DELETE_LAST'});
 
   return (
     <div className="App">
@@ -17,22 +21,22 @@ function App() {
                 <Card.Title>Simple Calculator</Card.Title>
                 <div id="result">{calculate}</div>
                 <Row className='buttons'>
-                  <button className='btn' id='1' onClick={e =>this.props.insertValue(e)}>1</button>
-                  <button className='btn' id='2' onClick={e =>this.props.insertValue(e)}>2</button>
-                  <button className='btn' id='3' >3</button>
-                  <button className='btn' id='<' >&#60;</button>
-                  <button className='btn' id='4' >4</button>
-                  <button className='btn' id='5' >5</button>
-                  <button className='btn' id='6' >6</button>
-                  <button className='btn' id='/' >&#247;</button>
-                  <button className='btn' id='7' >7</button>
-                  <button className='btn' id='8' >8</button>
-                  <button className='btn' id='9' >9</button>
-                  <button className='btn' id='*' >&#215;</button>
-                  <button className='btn' id='-' >-</button>
-                  <button className='btn' id='0' >0</button>
-                  <button className='btn' id='+' onClick={e =>this.props.insertValue(e)}>+</button>
-                  <button className='btn' id='=' onClick={e =>this.props.insertValue(e)}>=</button>
+                  <button className='btn' id='1' onClick={(e) => insertValue(e)}>1</button>
+                  <button className='btn' id='2' onClick={(e) => insertValue(e)}>2</button>
+                  <button className='btn' id='3' onClick={(e) => insertValue(e)}>3</button>
+                  <button className='btn' id='<' onClick={deleteLast}>&#60;</button>
+                  <button className='btn' id='4' onClick={(e) => insertValue(e)}>4</button>
+                  <button className='btn' id='5' onClick={(e) => insertValue(e)}>5</button>
+                  <button className='btn' id='6' onClick={(e) => insertValue(e)}>6</button>
+                  <button className='btn' id='/' onClick={(e) => insertValue(e)}>&#247;</button>
+                  <button className='btn' id='7' onClick={(e) => insertValue(e)}>7</button>
+                  <button className='btn' id='8' onClick={(e) => insertValue(e)}>8</button>
+                  <button className='btn' id='9' onClick={(e) => insertValue(e)}>9</button>
+                  <button className='btn' id='*' onClick={(e) => insertValue(e)}>&#215;</button>
+                  <button className='btn' id='-' onClick={(e) => insertValue(e)}>-</button>
+                  <button className='btn' id='0' onClick={(e) => insertValue(e)}>0</button>
+                  <button className='btn' id='+' onClick={(e) => insertValue(e)}>+</button>
+                  <button className='btn' id='=' onClick={calculateAll}>=</button>
                 </Row>
               </Card.Body>
             </Card>
@@ -43,18 +47,4 @@ function App() {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    ctr: state.calculate,
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    insertValue: (e)=>dispatch({type: 'GET_VALUE', value: e.currentTarget.id}),
-    calculate: ()=>dispatch({type: 'CALCULATE'}),
-    deleteLastOne: ()=>dispatch({type: 'DELETE_LAST'}),
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
